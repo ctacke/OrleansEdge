@@ -4,13 +4,14 @@ After=network-online.target postgresql.service
 Wants=network-online.target
 
 [Service]
-Type=notify
+Type=simple
 User=pi
 Group=pi
 WorkingDirectory=/home/pi/orleans-edge
-ExecStart=/usr/bin/dotnet OrleansEdge.Node.dll
+ExecStart=/home/pi/.dotnet/dotnet OrleansEdge.Node.dll
 Restart=always
 RestartSec=10
+TimeoutStartSec=300
 SyslogIdentifier=orleans-edge-node
 
 # Environment variables

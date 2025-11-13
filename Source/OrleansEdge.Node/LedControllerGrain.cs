@@ -30,7 +30,16 @@ public class LedControllerGrain : Grain, ILedControllerGrain//, IRemindable
         Console.WriteLine($"LedControllerGrain activated. Current color: {_state.State.CurrentColor}");
 
         // Sync hardware LED with persisted state (critical for failover)
-        Resolver.Services.Get<OutputService>()?.SetLedColor(_state.State.CurrentColor);
+        var outputService = Resolver.Services.Get<OutputService>();
+        if (outputService != null)
+        {
+            Console.WriteLine($"Applying loaded state to hardware: {_state.State.CurrentColor}");
+            outputService.SetLedColor(_state.State.CurrentColor);
+        }
+        else
+        {
+            Console.WriteLine("WARNING: OutputService not available - cannot control hardware!");
+        }
 
         // Register reminder for autonomous failover and health monitoring
         // Reminder survives grain deactivation and fires on whichever silo the grain activates on

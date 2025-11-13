@@ -1,7 +1,9 @@
 ﻿using Meadow;
 using Meadow.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Orleans;
 using Orleans.Configuration;
 using System.Net;
 
@@ -82,6 +84,35 @@ internal class Program
             })
             .Build();
 
-        await host.RunAsync();
+        await host.StartAsync();
+
+        // Periodically activate LED grain to ensure hardware stays synced
+        // This provides automatic failover even without Controller connected
+        _ = Task.Run(async () =>
+        {
+            await Task.Delay(5000); // Wait for silo to fully start
+
+            var grainFactory = host.Services.GetRequiredService<IGrainFactory>();
+            var ledGrain = grainFactory.GetGrain<ILedControllerGrain>("led");
+
+            while (true)
+            {
+                try
+                {
+                    // Call grain to trigger activation and hardware sync
+                    var currentColor = await ledGrain.GetCurrentColor();
+                    Console.WriteLine($"Health check: LED grain active with color {currentColor}");
+
+                    await Task.Delay(TimeSpan.FromSeconds(30)); // Check every 30 seconds
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Warning: LED grain health check failed: {ex.Message}");
+                    await Task.Delay(TimeSpan.FromSeconds(10)); // Retry faster on failure
+                }
+            }
+        });
+
+        await host.WaitForShutdownAsync();
     }
 }
