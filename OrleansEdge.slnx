@@ -1,0 +1,30 @@
+<Solution>
+  <Folder Name="/_ref/">
+    <Project Path="../../wilderness/Meadow.Contracts/Source/Meadow.Contracts/Meadow.Contracts.csproj">
+      <Deploy />
+    </Project>
+    <Project Path="../../wilderness/Meadow.Core/Source/extensions/Meadow.AspNetCore.Abstractions/Meadow.AspNetCore.Abstractions.csproj" />
+    <Project Path="../../wilderness/Meadow.Core/Source/implementations/desktop/Meadow.Desktop/Meadow.Desktop.csproj" />
+    <Project Path="../../wilderness/Meadow.Core/Source/implementations/linux/Meadow.Linux/Meadow.Linux.csproj">
+      <Deploy />
+    </Project>
+    <Project Path="../../wilderness/Meadow.Core/Source/implementations/mac/Meadow.Mac/Meadow.Mac.csproj" />
+    <Project Path="../../wilderness/Meadow.Core/Source/implementations/windows/Meadow.Windows/Meadow.Windows.csproj" />
+    <Project Path="../../wilderness/Meadow.Core/Source/Meadow.Core/Meadow.Core.csproj">
+      <Deploy />
+    </Project>
+    <Project Path="../../wilderness/Meadow.Foundation/Source/Meadow.Foundation.Core/Meadow.Foundation.Core.csproj">
+      <Deploy />
+    </Project>
+    <Project Path="../../wilderness/Meadow.Foundation/Source/Meadow.Foundation.Libraries_and_Frameworks/Serialization.MicroJson/Driver/Serialization.MicroJson.csproj" />
+    <Project Path="../../wilderness/Meadow.Foundation/Source/Meadow.Foundation.Peripherals/Displays.Silk/Driver/Displays.Silk.csproj" />
+    <Project Path="../../wilderness/Meadow.Logging/Source/Meadow.Logging/lib/Meadow.Logging.csproj" />
+    <Project Path="../../wilderness/Meadow.Units/Source/Meadow.Units/Meadow.Units.csproj">
+      <Deploy />
+    </Project>
+    <Project Path="../../wilderness/MQTTnet/Source/MQTTnet/MQTTnet.csproj" />
+  </Folder>
+  <Project Path="OrleansEdge.Controller/OrleansEdge.Controller.csproj" />
+  <Project Path="OrleansEdge.Core/OrleansEdge.Core.csproj" />
+  <Project Path="OrleansEdge.Node/OrleansEdge.Node.csproj" />
+</Solution>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "OrleansEdge.Controller": {
+      "commandName": "Project",
+      "commandLineArgs": "--environment Production"
+    }
+  }
+}

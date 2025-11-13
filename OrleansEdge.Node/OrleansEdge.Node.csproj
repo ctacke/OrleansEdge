@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="9.2.1" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.AdoNet" Version="9.2.1" />
+    <PackageReference Include="Microsoft.Orleans.Persistence.AdoNet" Version="9.2.1" />
+    <PackageReference Include="Npgsql" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\wilderness\Meadow.Core\Source\extensions\Meadow.AspNetCore.Abstractions\Meadow.AspNetCore.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\wilderness\Meadow.Core\Source\implementations\linux\Meadow.Linux\Meadow.Linux.csproj" />
+    <ProjectReference Include="..\OrleansEdge.Core\OrleansEdge.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="app.config.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

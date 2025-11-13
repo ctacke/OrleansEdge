@@ -1,0 +1,29 @@
+[Unit]
+Description=Orleans Edge Node - IoT LED Controller Silo
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=notify
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/orleans-edge
+ExecStart=/usr/bin/dotnet OrleansEdge.Node.dll
+Restart=always
+RestartSec=10
+SyslogIdentifier=orleans-edge-node
+
+# Environment variables
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_ENVIRONMENT=Production
+
+# Security hardening (optional but recommended)
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
